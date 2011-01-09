@@ -1,8 +1,8 @@
 $: << File.dirname(__FILE__)
 
-case RUBY_PLATFORM
-when /darwin/
-  require 'ghost/mac-host'
-when /linux/
+if ARGV.include?('--use-hosts-file') || RUBY_PLATFORM =~ /linux/
   require 'ghost/linux-host'
+else
+  require 'ghost/mac-host'  
 end
+
